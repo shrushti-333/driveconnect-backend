@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors'); // ✅ only once
 const mongoose = require('mongoose');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -12,13 +12,16 @@ const ratingRoutes = require('./routes/ratings');
 
 const app = express();
 
-// Middleware
+// ✅ CORS (FIXED + preflight added)
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://melodic-centaur-586771.netlify.app'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: "https://melodic-centaur-586771.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
+
+app.options("*", cors()); // 🔥 IMPORTANT (this fixes your exact error)
+
+// Middleware
 app.use(express.json());
 
 // Health Check
