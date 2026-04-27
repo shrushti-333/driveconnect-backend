@@ -2,9 +2,8 @@
   "name": "driveconnect-backend",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": {
-    "dev": "nodemon server.js"
-  },
+
+  
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.6",
@@ -15,5 +14,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   }
 }
